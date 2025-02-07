@@ -85,6 +85,31 @@ To run this app on an Android or iOS emulator, follow these steps:
 
 ---
 
+## Configuration
+
+### Refresh Interval
+
+The article refresh interval is 30 seconds by default.
+
+**To change it:**
+
+1. **Open:**  `lib/features/articles/services/articles_refresh_service.dart`
+   (or the file where you define `ArticlesRefreshService`).
+
+2. **Locate:** The `ArticlesRefreshService` constructor.
+
+3. **Find & Modify:** The `refreshInterval` parameter when you create an instance of `ArticlesRefreshService`. For example:
+
+   ```dart
+   final articlesRefreshService = ArticlesRefreshService(
+     [],
+     newsService: myNewsServiceInstance,
+     sourceId: 'your-source-id',
+     refreshInterval: const Duration(minutes: 1), // <-- Change this Duration
+   );
+   
+---
+
 ## Project Structure
 
 The project follows the Model-View-ViewModel (MVVM) architecture to ensure a clean separation of concerns:

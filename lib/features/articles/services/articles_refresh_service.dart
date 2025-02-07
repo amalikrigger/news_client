@@ -23,7 +23,7 @@ class ArticlesRefreshService extends ValueNotifier<List<Article>> {
         _timer = timer ??= ProxyStartStoppableTimer() {
     refreshArticles().then((_) {
       _timer.startTimer(
-          duration: Duration(seconds: 1500),
+          duration: Duration(seconds: 30),
           onTimer: () async {
             await refreshArticles();
           });
