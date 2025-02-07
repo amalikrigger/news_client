@@ -82,31 +82,6 @@ To run this app on an Android or iOS emulator, follow these steps:
         flutter run
         ```
     - Flutter will automatically detect the running emulator/simulator, build the app, and launch it on the device.
-
----
-
-## Configuration
-
-### Refresh Interval
-
-The article refresh interval is 30 seconds by default.
-
-**To change it:**
-
-1. **Open:**  `lib/features/articles/services/articles_refresh_service.dart`
-   (or the file where you define `ArticlesRefreshService`).
-
-2. **Locate:** The `ArticlesRefreshService` constructor.
-
-3. **Find & Modify:** The `refreshInterval` parameter when you create an instance of `ArticlesRefreshService`. For example:
-
-   ```dart
-   final articlesRefreshService = ArticlesRefreshService(
-     [],
-     newsService: myNewsServiceInstance,
-     sourceId: 'your-source-id',
-     refreshInterval: const Duration(minutes: 1), // <-- Change this Duration
-   );
    
 ---
 
@@ -132,3 +107,29 @@ To run the unit tests for the project, use the following command in your termina
 
 ```bash
 flutter test
+```
+
+---
+
+## Configuration
+
+### Refresh Interval
+
+The article refresh interval is 30 seconds by default.
+
+**To change it:**
+
+1. **Open:**  `lib/features/articles/services/articles_refresh_service.dart`
+   (or the file where you define `ArticlesRefreshService`).
+
+2. **Locate:** The `ArticlesRefreshService` constructor.
+
+3. **Find & Modify:** The `refreshInterval` parameter when you create an instance of `ArticlesRefreshService`. For example:
+
+   ```dart
+   final articlesRefreshService = ArticlesRefreshService(
+     [],
+     newsService: myNewsServiceInstance,
+     sourceId: 'your-source-id',
+     refreshInterval: const Duration(minutes: 1), // <-- Change this Duration
+   );
