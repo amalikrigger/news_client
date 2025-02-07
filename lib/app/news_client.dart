@@ -32,6 +32,7 @@ class NewsClient extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'News App',
+        debugShowCheckedModeBanner: false,
         routes: {
           '/': (context) => SourcesScreen(),
           '/saved': (context) => SavedArticlesScreen(),
