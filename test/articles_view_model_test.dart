@@ -71,8 +71,7 @@ void main() {
       test('toggleSaveArticle - Unsave Article', () async {
         final articleToUnsave = createArticle();
         mockArticlesRepository.savedArticles = [articleToUnsave];
-        await viewModel
-            .refreshSavedArticles(); // Initial load of saved articles
+        await viewModel.refreshSavedArticles();
 
         expect(viewModel.isSaved(articleToUnsave), true);
 
@@ -106,8 +105,7 @@ void main() {
         final savedArticlesInitially = [createArticle(url: 'saved-url-1')];
         mockArticlesRepository.savedArticles = savedArticlesInitially;
         await viewModel.refreshSavedArticles();
-        expect(viewModel.isSaved(createArticle(url: 'saved-url-1')),
-            false); // Still true after failed refresh
+        expect(viewModel.isSaved(createArticle(url: 'saved-url-1')), false);
       });
     });
 
@@ -115,15 +113,15 @@ void main() {
       test('isSaved - Article is saved', () async {
         final savedArticle = createArticle(url: 'saved-article-url');
         mockArticlesRepository.savedArticles = [savedArticle];
-        await viewModel.refreshSavedArticles(); // Load saved articles
+        await viewModel.refreshSavedArticles();
 
         expect(viewModel.isSaved(savedArticle), true);
       });
 
       test('isSaved - Article is not saved', () {
         final notSavedArticle = createArticle(url: 'not-saved-article-url');
-        mockArticlesRepository.savedArticles = []; // No saved articles
-        viewModel.refreshSavedArticles(); // Load saved articles (empty)
+        mockArticlesRepository.savedArticles = [];
+        viewModel.refreshSavedArticles();
 
         expect(viewModel.isSaved(notSavedArticle), false);
       });
