@@ -5,13 +5,25 @@ import 'package:news_client/features/articles/services/news_service.dart';
 
 class MockNewsService implements NewsService {
   List<List<Article>> articlesToReturnSequences;
-  int callCount = 0;
+  int articleCallCount = 0;
   List<Map<String, dynamic>> fetchArticlesCalls = [];
 
-  MockNewsService({required this.articlesToReturnSequences});
+  List<Source>? sourcesToReturn;
+  Exception? errorToThrow;
+
+  MockNewsService({
+    this.articlesToReturnSequences = const [],
+    this.sourcesToReturn,
+    this.errorToThrow,
+  });
 
   @override
-  Future<List<Source>> fetchSources() async => [];
+  Future<List<Source>> fetchSources() async {
+    if (errorToThrow != null) {
+      throw errorToThrow!;
+    }
+    return sourcesToReturn ?? [];
+  }
 
   @override
   Future<List<Article>> fetchArticles({
@@ -32,8 +44,8 @@ class MockNewsService implements NewsService {
       'from': from,
       'to': to,
     });
-    if (callCount < articlesToReturnSequences.length) {
-      return articlesToReturnSequences[callCount++];
+    if (articleCallCount < articlesToReturnSequences.length) {
+      return articlesToReturnSequences[articleCallCount++];
     }
     return [];
   }

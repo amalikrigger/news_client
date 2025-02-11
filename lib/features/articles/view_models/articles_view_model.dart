@@ -3,13 +3,13 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:news_client/features/articles/repositories/articles_repository.dart';
 import 'package:news_client/features/articles/services/articles_refresh_service.dart';
-import 'package:news_client/features/articles/services/implementations/news_api_service.dart';
+import 'package:news_client/features/articles/services/news_service.dart';
 
 import '../models/article.dart';
 import '../models/source.dart';
 
 class ArticlesViewModel extends ChangeNotifier {
-  final NewsApiService _newsApiService;
+  final NewsService _newsApiService;
   final ArticlesRepository _repository;
   final Source source;
   late final ArticlesRefreshService _articlesRefreshService;

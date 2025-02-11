@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_client/features/articles/models/source.dart';
-
-import '../services/implementations/news_api_service.dart';
+import 'package:news_client/features/articles/services/news_service.dart';
 
 class SourcesViewModel extends ChangeNotifier {
-  final NewsApiService _newsApiService;
+  final NewsService _newsApiService;
 
   SourcesViewModel({newsApiService}) : _newsApiService = newsApiService;
   List<Source> _sources = [];
