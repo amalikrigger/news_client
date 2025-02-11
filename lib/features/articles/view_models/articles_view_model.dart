@@ -15,14 +15,16 @@ class ArticlesViewModel extends ChangeNotifier {
   late final ArticlesRefreshService _articlesRefreshService;
   HashSet<String> _savedArticles = HashSet();
 
-  ArticlesViewModel(
-      {newsApiService,
-      required this.source,
-      required ArticlesRepository repository})
-      : _newsApiService = newsApiService,
+  ArticlesViewModel({
+    newsApiService,
+    required this.source,
+    required ArticlesRepository repository,
+    ArticlesRefreshService? articlesRefreshService, // Add optional parameter
+  })  : _newsApiService = newsApiService,
         _repository = repository,
-        _articlesRefreshService = ArticlesRefreshService([],
-            newsService: newsApiService, sourceId: source.id) {
+        _articlesRefreshService = articlesRefreshService ??
+            ArticlesRefreshService([],
+                newsService: newsApiService, sourceId: source.id) {
     loadArticles();
   }
 
@@ -31,7 +33,9 @@ class ArticlesViewModel extends ChangeNotifier {
   String? _error;
 
   List<Article> get articles => _articles;
+
   bool get isLoading => _isLoading;
+
   String? get error => _error;
 
   Future<void> loadArticles() async {
