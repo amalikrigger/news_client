@@ -69,10 +69,14 @@ class ArticlesViewModel extends ChangeNotifier {
   }
 
   Future<void> refreshSavedArticles() async {
-    _savedArticles =
-        HashSet.from(await _repository.getSavedArticles().then((article) {
-      return article.map((e) => e.url).toList();
-    }));
+    try {
+      _savedArticles =
+          HashSet.from(await _repository.getSavedArticles().then((article) {
+        return article.map((e) => e.url).toList();
+      }));
+    } catch (e) {
+      debugPrint('Error refreshing saved articles: $e');
+    }
     notifyListeners();
   }
 }
